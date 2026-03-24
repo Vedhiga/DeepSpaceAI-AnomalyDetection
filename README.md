@@ -9,22 +9,25 @@
 
 ---
 
-### 📋 Project Overview
+## 📋 Project Overview
 
 This project develops an **AI-powered real-time anomaly detection and autonomous decision support system** designed for deep space missions (e.g., Chandrayaan-3, Aditya-L1, Mars Perseverance Rover), where communication delays with Earth make real-time human intervention impossible.
 
 The system detects anomalies in spacecraft telemetry data, predicts potential failures, and autonomously recommends corrective actions — all running locally on the spacecraft.
 
-**Key Features:**
-- Multivariate time-series anomaly detection using **Isolation Forest** (baseline) and **LSTM Autoencoder** (main model)
-- Real-time autonomous decision-making logic
-- Interactive **Mission Control Dashboard** built with Streamlit
-- Fully reproducible pipeline using NASA CMAPSS FD001 dataset (proxy for spacecraft telemetry)
-- Complete 21-day structured project implementation
+### **Key Features**
+
+* Multivariate time-series anomaly detection using:
+  * **Isolation Forest** (baseline)
+  * **LSTM Autoencoder** (main model)
+* Real-time autonomous decision-making logic
+* Streamlit-based **Mission Control Dashboard**
+* Reproducible pipeline using NASA CMAPSS FD001 dataset
+* Complete 21-day structured project implementation
 
 ---
 
-### 🏗️ Detailed System Architecture
+## 🏗️ System Architecture
 
 ```mermaid
 graph TD
@@ -40,98 +43,126 @@ graph TD
     E --> F[Alert & Action Engine<br>(Isolate / Reduce Thrust / Redundancy)]
     
     D & E --> G[Interactive Streamlit Dashboard]
-    G --> H[Real-time Visualization + Export] 
+    G --> H[Real-time Visualization + Export]
 ```
-### Component Breakdown:
 
-Data Layer
-NASA CMAPSS FD001 Dataset (21 sensors + 3 operational settings)
-Sliding window of 10 cycles for temporal modeling
+### **Component Breakdown**
 
-Model Layer
-Isolation Forest: Fast, unsupervised baseline for anomaly detection
-LSTM Autoencoder: Deep learning model that learns normal behavior patterns and flags high reconstruction error as anomalies (NASA-inspired approach)
+#### **Data Layer**
+* NASA CMAPSS FD001 Dataset (21 sensors + 3 operational settings)
+* Sliding window of 10 cycles for temporal modeling
 
-Decision Layer
-Rule-based autonomous logic that converts anomaly scores into actionable decisions:
-Normal → Continue mission
-Anomaly → Reduce thrust / Isolate subsystem / Activate redundancy
+#### **Model Layer**
+* **Isolation Forest:** Fast unsupervised anomaly detection
+* **LSTM Autoencoder:** Learns normal sensor behavior and detects high reconstruction error as anomalies
 
+#### **Decision Layer**
 
-Presentation Layer
-Streamlit web application with:
-Phase-wise navigation (21-day plan)
-Live anomaly detection on uploaded telemetry
-Interactive Plotly visualizations with anomaly highlighting
-Downloadable results
+Rule-based autonomous logic:
+* **Normal →** Continue mission
+* **Anomaly →** Reduce thrust / Isolate subsystem / Activate redundancy
 
+#### **Presentation Layer**
 
+Streamlit dashboard featuring:
+* Phase-wise 21-day plan navigation
+* Live anomaly detection on uploaded telemetry
+* Plotly visualizations with anomaly highlighting
+* Downloadable results
 
+---
 
-### 🛠️ How the Project Works (Step-by-Step)
+## 🛠️ How the System Works
 
-Telemetry Ingestion
-Raw multivariate sensor data (21 sensors) is received from the spacecraft.
-Preprocessing
-Data normalization using MinMaxScaler
-Creation of time-series sequences (window = 10)
+### **1. Telemetry Ingestion**
+* Raw multivariate sensor data (21 sensors)
 
-Anomaly Detection
-Phase 1 (Baseline): Isolation Forest flags statistical outliers
-Phase 2 (Main): LSTM Autoencoder reconstructs input → high MSE = anomaly
+### **2. Preprocessing**
+* Normalization using MinMaxScaler
+* Time-series sequence creation (window size: 10)
 
-Autonomous Decision Making
-If anomaly detected → system triggers predefined corrective actions without waiting for Earth command.
+### **3. Anomaly Detection**
+* **Isolation Forest:** Statistical outlier detection
+* **LSTM Autoencoder:** Reconstruction error-based detection
 
-Visualization & Monitoring
-Real-time dashboard shows sensor trends with red markers on anomalous points
-Engineers/ground team can monitor via web interface
+### **4. Autonomous Decision Making**
+* If anomaly detected → automated corrective action
+* No dependency on Earth-based commands
 
-### 🚀 How to Run Locally
-# 1. Clone the repository
+### **5. Visualization & Monitoring**
+* Real-time dashboard
+* Anomaly markers (red)
+* Accessible via web interface
+
+---
+
+## 🚀 How to Run Locally
+
+### **1. Clone the repository**
+
+```bash
 git clone https://github.com/VedhigaVB/DeepSpaceAI-AnomalyDetection.git
 cd DeepSpaceAI-AnomalyDetection
+```
 
-# 2. Install dependencies
+### **2. Install dependencies**
+
+```bash
 pip install streamlit tensorflow joblib plotly pandas numpy scikit-learn
+```
 
-# 3. Run the dashboard
+### **3. Run the dashboard**
+
+```bash
 streamlit run app.py
-Open your browser at http://localhost:8501
+```
 
-### 📊 Results Achieved
+Open your browser at:
+➡️ **[http://localhost:8501](http://localhost:8501)**
 
-Isolation Forest: F1-Score ≈ 0.85
-LSTM Autoencoder: F1-Score ≈ 0.915 – 0.93
-Anomalies successfully detected with clear visual highlighting
-Autonomous decisions generated in real-time
-Fully interactive web-based Mission Control Dashboard
+---
 
+## 📊 Results Achieved
 
-### 🎯 21-Day Project Completion
-All phases were successfully completed as per the structured plan:
+* **Isolation Forest:** F1-Score ≈ **0.85**
+* **LSTM Autoencoder:** F1-Score ≈ **0.915 – 0.93**
+* Accurate anomaly detection with visual highlighting
+* Autonomous decisions generated in real-time
+* Fully interactive Mission Control Dashboard
 
-Phase 1: Detect abnormal sensor behavior (Isolation Forest)
-Phase 2: Model Development (LSTM Autoencoder)
-Phase 3: Autonomous Decision Layer
-Phase 4: Visualization & Deployment (Streamlit)
+---
 
+## 🎯 21-Day Project Completion
 
-### 🔮 Future Extensions
+* **Phase 1:** Detect abnormal sensor behavior
+* **Phase 2:** Model Development (LSTM Autoencoder)
+* **Phase 3:** Autonomous Decision Layer
+* **Phase 4:** Visualization & Deployment (Streamlit)
 
-Integration with real ISRO telemetry data
-Reinforcement Learning for optimal action selection
-Edge deployment on spacecraft hardware
-Multi-fault detection (FD003/FD004)
-Uncertainty quantification using Bayesian methods
+---
 
+## 🔮 Future Extensions
 
-### 📄 Documentation
-Project Report : 
-Colab Notebook : https://colab.research.google.com/drive/1MfT9pweH_1e_KQl_M_lnqICwtb-4FUTS?usp=sharing
+* Integration with real ISRO telemetry data
+* Reinforcement Learning for optimal action selection
+* Deployment on spacecraft hardware
+* Multi-fault detection (FD003/FD004)
+* Bayesian uncertainty quantification
 
+---
 
-Made with ❤️ for Deep Space Exploration
-Author: Vedhiga.V.B
-Institution: Avinashilingam University
-Year: 2026
+## 📄 Documentation
+
+* **Project Report:**
+* **Colab Notebook:**
+  👉 [Open in Google Colab](https://colab.research.google.com/drive/1MfT9pweH_1e_KQl_M_lnqICwtb-4FUTS?usp=sharing)
+
+---
+
+## ✨ Author
+
+**Made with ❤️ for Deep Space Exploration**
+
+**Author:** Vedhiga V. B  
+**Institution:** Avinashilingam University  
+**Year:** 2026
