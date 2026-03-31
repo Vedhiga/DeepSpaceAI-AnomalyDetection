@@ -154,6 +154,7 @@ Open your browser at:
 ## 📄 Documentation
 
 * **Project Report:**
+  👉 [Open in Google Drive](https://drive.google.com/file/d/1ALoNOjEnbGYrL19BKshRZMZMwjRhCPle/view?usp=sharing)
 * **Colab Notebook:**
   👉 [Open in Google Colab](https://colab.research.google.com/drive/1MfT9pweH_1e_KQl_M_lnqICwtb-4FUTS?usp=sharing)
 
