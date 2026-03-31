@@ -31,17 +31,17 @@ The system detects anomalies in spacecraft telemetry data, predicts potential fa
 
 ```mermaid
 graph TD
-    A[Spacecraft Telemetry Data<br>(Multivariate Time-Series)] 
-    --> B[Data Preprocessing<br>(Normalization + Sliding Window)]
-    
-    B --> C1[Baseline Model<br>Isolation Forest]
-    B --> C2[Main Model<br>LSTM Autoencoder]
-    
+    A["Spacecraft Telemetry Data<br/>(Multivariate Time-Series)"]
+    --> B["Data Preprocessing<br/>(Normalization + Sliding Window)"]
+
+    B --> C1["Baseline Model<br/>Isolation Forest"]
+    B --> C2["Main Model<br/>LSTM Autoencoder"]
+
     C1 & C2 --> D[Anomaly Detection Engine]
-    
+
     D --> E[Autonomous Decision Layer]
-    E --> F[Alert & Action Engine<br>(Isolate / Reduce Thrust / Redundancy)]
-    
+    E --> F["Alert & Action Engine<br/>(Isolate / Reduce Thrust / Redundancy)"]
+
     D & E --> G[Interactive Streamlit Dashboard]
     G --> H[Real-time Visualization + Export]
 ```
